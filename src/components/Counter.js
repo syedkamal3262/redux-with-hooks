@@ -1,42 +1,38 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { increament, decreament, inreamentByValue } from "../store/action";
 const Counter = () => {
   const [value, setValue] = useState(0);
-
   const dispatch = useDispatch();
   return (
     <div>
       <div>
         <button
           onClick={() => {
-            dispatch({
-              type: "INCREAMENT",
-            });
+            dispatch(increament());
           }}
         >
           increase
         </button>
         <button
           onClick={() => {
-            dispatch({
-              type: "DECREAMENT",
-            });
+            dispatch(decreament());
           }}
         >
           decrease
         </button>
       </div>
       <div>
-        <input type="number" onChange={(e) => setValue(e.target.value)} />
+        <input
+          type="number"
+          onChange={(e) => setValue(Number(e.target.value))}
+        />
         <button
           onClick={() => {
-            dispatch({
-              type: "INCREASE_BY_NO",
-              payload: value,
-            });
+            dispatch(inreamentByValue(value));
           }}
         >
-          Increase by Value
+          Increase By Value
         </button>
       </div>
     </div>
